@@ -2,7 +2,7 @@ package model;
 
 
 
-public class Material {
+public class Material extends Component {
 
 
     private int materialId;

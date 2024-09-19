@@ -2,7 +2,7 @@ package model;
 
 
 
-public class Labor {
+public class Labor extends Component  {
 
 
     private int laborId;

@@ -2,7 +2,7 @@ package model;
 
 
 
-public class Component {
+public class  Component {
 
 
     private int componentId;
