@@ -13,6 +13,16 @@ public class Estimate {
     private boolean isAccepted;
     private int projectId;
 
+    public Estimate(int estimateId, double estimatedAmount, Date issueDate, Date validityDate, boolean isAccepted, int projectId) {
+        this.estimateId = estimateId;
+        this.estimatedAmount = estimatedAmount;
+        this.issueDate = issueDate;
+        this.validityDate = validityDate;
+        this.isAccepted = isAccepted;
+        this.projectId = projectId;
+
+    }
+
     // Getters and Setters
     public int getEstimateId() {
         return estimateId;
