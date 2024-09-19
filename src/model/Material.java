@@ -12,6 +12,17 @@ public class Material extends Component {
     private double transportCost;
     private double qualityCoefficient;
 
+    public Material(int materialId, int componentId, double unitCost, double quantity, double transportCost, double qualityCoefficient) {
+        this.materialId = materialId;
+        this.componentId = componentId;
+        this.unitCost = unitCost;
+        this.quantity = quantity;
+        this.transportCost = transportCost;
+        this.qualityCoefficient = qualityCoefficient;
+
+
+    }
+
     // Getters and Setters
     public int getMaterialId() {
         return materialId;

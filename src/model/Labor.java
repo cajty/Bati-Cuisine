@@ -12,6 +12,16 @@ public class Labor extends Component  {
     private double workerProductivity;
     private String laborType;
 
+    public Labor(int laborId, int componentId, double hourlyRate, double workHours, double workerProductivity, String laborType) {
+        this.laborId = laborId;
+        this.componentId = componentId;
+        this.hourlyRate = hourlyRate;
+        this.workHours = workHours;
+        this.workerProductivity = workerProductivity;
+        this.laborType = laborType;
+
+    }
+
     // Getters and Setters
     public int getLaborId() {
         return laborId;
