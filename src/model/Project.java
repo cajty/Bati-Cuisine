@@ -9,7 +9,15 @@ public class Project {
     private ProjectStatus projectStatus; // Changed from String to ProjectStatus
     private int clientId;
 
+    public Project(String projectName, double profitMargin, double totalCost, ProjectStatus projectStatus, int clientId) {
+        this.projectName = projectName;
+        this.profitMargin = profitMargin;
+        this.totalCost = totalCost;
+        this.projectStatus = projectStatus;
+        this.clientId = clientId;
 
+
+    }
     public int getProjectId() {
         return projectId;
     }
@@ -56,5 +64,17 @@ public class Project {
 
     public void setClientId(int clientId) {
         this.clientId = clientId;
+    }
+
+    @Override
+    public String toString() {
+        return "Project{" +
+                "projectId=" + projectId +
+                ", projectName='" + projectName + '\'' +
+                ", profitMargin=" + profitMargin +
+                ", totalCost=" + totalCost +
+                ", projectStatus=" + projectStatus +
+                ", clientId=" + clientId +
+                '}';
     }
 }

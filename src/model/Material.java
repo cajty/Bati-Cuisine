@@ -2,7 +2,7 @@ package model;
 
 
 
-public class Material {
+public class Material extends Component {
 
 
     private int materialId;
@@ -11,6 +11,17 @@ public class Material {
     private double quantity;
     private double transportCost;
     private double qualityCoefficient;
+
+    public Material(int materialId, int componentId, double unitCost, double quantity, double transportCost, double qualityCoefficient) {
+        this.materialId = materialId;
+        this.componentId = componentId;
+        this.unitCost = unitCost;
+        this.quantity = quantity;
+        this.transportCost = transportCost;
+        this.qualityCoefficient = qualityCoefficient;
+
+
+    }
 
     // Getters and Setters
     public int getMaterialId() {
