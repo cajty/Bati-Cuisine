@@ -12,19 +12,25 @@ import java.util.Optional;
 
 public class ProjectRepositoryImpl implements repository.ProjectRepository {
 
-  public Boolean addProject(Project project) {
+  public Optional<Project> addProject(Project project) {
     String sql = "INSERT INTO projects (project_name, client_id) VALUES (?, ?)";
     try {
         Connection connection = DbConnection.getInstance().getConnection();
-        PreparedStatement ps = connection.prepareStatement(sql);
+        PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, project.getProjectName());
         ps.setInt(2, project.getClientId());
         ps.executeUpdate();
-        return true;
+
+        ResultSet rs = ps.getGeneratedKeys();
+        if (rs.next()) {
+            int projectId = rs.getInt(1);
+            project.setProjectId(projectId);
+            return Optional.of(project);
+        }
     } catch (SQLException e) {
         e.printStackTrace();
-        return false;
     }
+    return Optional.empty();
 }
 
     public Optional<List<Project>> getAllProjects(){

@@ -57,8 +57,8 @@ public class Menu {
             System.out.print("Entrez le nom du projet : ");
             String projectName = input.nextLine();
 
-            // Get additional project details like surface, materials, and labor
-            projectController.addMaterialsAndLabor(projectName, client);
+             projectController.addProject(projectName, client.getClientId());
+//            projectController.addComponent();
         } else {
             System.out.println("Aucun client sélectionné. Retour au menu principal.");
         }
