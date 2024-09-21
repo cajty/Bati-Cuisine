@@ -13,7 +13,7 @@ import java.util.Optional;
 public class ProjectRepositoryImpl implements repository.ProjectRepository {
 
   public Boolean addProject(Project project) {
-    String sql = "INSERT INTO projects (project_name, profit_margin, total_cost, project_status, client_id) VALUES (?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO projects (project_name, client_id) VALUES (?, ?, ?, ?, ?)";
     try {
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement ps = connection.prepareStatement(sql);
