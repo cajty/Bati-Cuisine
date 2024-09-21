@@ -7,7 +7,7 @@ public class  Component {
 
     private int componentId;
     private String name;
-    private String componentType;
+    private ComponentType componentType;
     private double vatRate;
     private int projectId;
 
@@ -28,11 +28,11 @@ public class  Component {
         this.name = name;
     }
 
-    public String getComponentType() {
+    public ComponentType getComponentType() {
         return componentType;
     }
 
-    public void setComponentType(String componentType) {
+    public void setComponentType(ComponentType componentType) {
         this.componentType = componentType;
     }
 
