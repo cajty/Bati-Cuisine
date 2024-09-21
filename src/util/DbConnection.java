@@ -8,7 +8,7 @@ public class DbConnection {
     private static DbConnection instance;
     private Connection connection;
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/bati_cuisine_db_inheritance";
+    private static final String URL = "jdbc:postgresql://localhost:5432/bati_cuisine_2";
     private static final String USER = "postgres";
     private static final String PASSWORD = "password";
 
