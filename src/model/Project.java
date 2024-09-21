@@ -9,18 +9,26 @@ public class Project {
     private ProjectStatus projectStatus; // Changed from String to ProjectStatus
     private int clientId;
 
-    public Project(String projectName, double profitMargin, double totalCost, ProjectStatus projectStatus, int clientId) {
+    public Project(int projectId,String projectName, double profitMargin, double totalCost, ProjectStatus projectStatus, int clientId) {
+        this.projectId = projectId;
         this.projectName = projectName;
         this.profitMargin = profitMargin;
         this.totalCost = totalCost;
         this.projectStatus = projectStatus;
         this.clientId = clientId;
 
+    }
 
+
+
+    public Project( String projectName, int clientId) {
+        this.projectName = projectName;
+        this.clientId = clientId;
     }
-    public int getProjectId() {
-        return projectId;
-    }
+
+
+
+    public int getProjectId() { return projectId; }
 
     public void setProjectId(int projectId) {
         this.projectId = projectId;

@@ -12,7 +12,7 @@ public interface MaterialRepository {
 
 
 
-    //    Material getMaterialOfComponent(int componentId);
+
 
 
 }

@@ -13,15 +13,12 @@ import java.util.Optional;
 public class ProjectRepositoryImpl implements repository.ProjectRepository {
 
   public Boolean addProject(Project project) {
-    String sql = "INSERT INTO projects (project_name, client_id) VALUES (?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO projects (project_name, client_id) VALUES (?, ?)";
     try {
         Connection connection = DbConnection.getInstance().getConnection();
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, project.getProjectName());
-        ps.setDouble(2, project.getProfitMargin());
-        ps.setDouble(3, project.getTotalCost());
-        ps.setString(4, project.getProjectStatus().name());
-        ps.setInt(5, project.getClientId());
+        ps.setInt(2, project.getClientId());
         ps.executeUpdate();
         return true;
     } catch (SQLException e) {
@@ -51,6 +48,7 @@ public class ProjectRepositoryImpl implements repository.ProjectRepository {
 
     public Project mapResultSetToProject(ResultSet rs) throws Exception {
         return new Project(
+                rs.getInt("project_id"),
                 rs.getString("project_name"),
                 rs.getDouble("profit_margin"),
                 rs.getDouble("total_cost"),
