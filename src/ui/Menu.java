@@ -49,7 +49,7 @@ public class Menu {
 
     private static void createNewProject() {
         System.out.println("--- Recherche de client ---");
-        Optional<Client> clientOpt = clientController.searchOrAddClient();
+        Optional<Client> clientOpt = searchOrAddClient();
 
         if (clientOpt.isPresent()) {
             Client client = clientOpt.get();
@@ -71,6 +71,62 @@ public class Menu {
         }
         return input.nextInt();
     }
+    private static Optional<Client> searchOrAddClient() {
+     do {
+         System.out.println("1. Rechercher un client existant");
+         System.out.println("2. Ajouter un nouveau client");
+         System.out.println("3. Retour au menu principal");
+         System.out.print("Choisissez une option : ");
+         int choice = getValidInput();
+         switch (choice) {
+             case 1:
+                 System.out.print("Entrez le nom du client : ");
+                 String clientName = input.nextLine();
+                 return searchClient();
+             case 2:
+                 return addClient();
+             case 3:
+                 return Optional.empty();
+             default:
+                 System.out.println("Choix invalide. Veuillez réessayer.");
+         }
+     } while (true);
+    }
+
+    private static Optional<Client> addClient() {
+        input.nextLine();
+    System.out.print("Entrez le nom du client : ");
+    String name = input.nextLine();
+
+    System.out.print("Entrez l'adresse du client : ");
+    String address = input.nextLine();
+
+    System.out.print("Entrez le numéro de téléphone du client : ");
+    String phone = input.nextLine();
+
+    boolean isProfessional = false;
+    while (true) {
+        System.out.print("Le client est-il un professionnel ? (true/false) : ");
+        String isProfessionalInput = input.nextLine();
+        if (isProfessionalInput.equalsIgnoreCase("true") || isProfessionalInput.equalsIgnoreCase("false")) {
+            isProfessional = Boolean.parseBoolean(isProfessionalInput);
+            break;
+        } else {
+            System.out.println("Entrée invalide. Veuillez entrer 'true' ou 'false'.");
+        }
+    }
+
+    return clientController.addClient(
+            new Client(name, address, phone, isProfessional)
+    );
+}
+
+        private static Optional<Client> searchClient() {
+            input.nextLine();
+            System.out.print("Entrez le nom du client : ");
+            String name = input.nextLine();
+            return clientController.searchClient(name);
+        }
 
 
 }
