@@ -2,7 +2,7 @@ package model;
 
 
 
-public class  Component {
+public abstract class  Component {
 
 
     private int componentId;
@@ -10,6 +10,18 @@ public class  Component {
     private ComponentType componentType;
     private double vatRate;
     private int projectId;
+
+    public Component( String name, ComponentType componentType, double vatRate, int projectId) {
+        this.name = name;
+        this.componentType = componentType;
+        this.vatRate = vatRate;
+        this.projectId = projectId;
+    }
+
+    public Component(String name,  double vatRate) {
+        this.name = name;
+        this.vatRate = vatRate;
+    }
 
 
     public int getComponentId() {
