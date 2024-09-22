@@ -4,17 +4,14 @@ package model;
 
 public class Material extends Component {
 
-
-    private int materialId;
-    private int componentId;
     private double unitCost;
     private double quantity;
     private double transportCost;
     private double qualityCoefficient;
 
-    public Material(int materialId, int componentId, double unitCost, double quantity, double transportCost, double qualityCoefficient) {
-        this.materialId = materialId;
-        this.componentId = componentId;
+    public Material( String name, ComponentType componentType, double vatRate, int projectId,
+                     double unitCost, double quantity, double transportCost, double qualityCoefficient) {
+        super(name, componentType, vatRate, projectId);
         this.unitCost = unitCost;
         this.quantity = quantity;
         this.transportCost = transportCost;
@@ -23,22 +20,19 @@ public class Material extends Component {
 
     }
 
-    // Getters and Setters
-    public int getMaterialId() {
-        return materialId;
+    public Material(String name,  double vatRate,
+                     double unitCost, double quantity, double transportCost, double qualityCoefficient) {
+        super(name,  vatRate);
+        this.unitCost = unitCost;
+        this.quantity = quantity;
+        this.transportCost = transportCost;
+        this.qualityCoefficient = qualityCoefficient;
+
+
     }
 
-    public void setMaterialId(int materialId) {
-        this.materialId = materialId;
-    }
 
-    public int getComponentId() {
-        return componentId;
-    }
 
-    public void setComponentId(int componentId) {
-        this.componentId = componentId;
-    }
 
     public double getUnitCost() {
         return unitCost;

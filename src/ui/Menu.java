@@ -53,6 +53,7 @@ public class Menu {
 
         if (clientOpt.isPresent()) {
             Client client = clientOpt.get();
+
             System.out.println("--- Création d'un Nouveau Projet ---");
             System.out.print("Entrez le nom du projet : ");
             String projectName = input.nextLine();

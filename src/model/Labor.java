@@ -5,39 +5,27 @@ package model;
 public class Labor extends Component  {
 
 
-    private int laborId;
-    private int componentId;
     private double hourlyRate;
     private double workHours;
     private double workerProductivity;
     private String laborType;
 
-    public Labor(int laborId, int componentId, double hourlyRate, double workHours, double workerProductivity, String laborType) {
-        this.laborId = laborId;
-        this.componentId = componentId;
+   public Labor(String name, ComponentType componentType, double vatRate, int projectId, double hourlyRate, double workHours, double workerProductivity, String laborType) {
+    super(name, componentType, vatRate, projectId);
+    this.hourlyRate = hourlyRate;
+    this.workHours = workHours;
+    this.workerProductivity = workerProductivity;
+    this.laborType = laborType;
+}
+    public Labor(String name, double vatRate,  double hourlyRate, double workHours, double workerProductivity, String laborType) {
+        super(name, vatRate);
         this.hourlyRate = hourlyRate;
         this.workHours = workHours;
         this.workerProductivity = workerProductivity;
         this.laborType = laborType;
-
     }
 
-    // Getters and Setters
-    public int getLaborId() {
-        return laborId;
-    }
 
-    public void setLaborId(int laborId) {
-        this.laborId = laborId;
-    }
-
-    public int getComponentId() {
-        return componentId;
-    }
-
-    public void setComponentId(int componentId) {
-        this.componentId = componentId;
-    }
 
     public double getHourlyRate() {
         return hourlyRate;
@@ -69,6 +57,19 @@ public class Labor extends Component  {
 
     public void setLaborType(String laborType) {
         this.laborType = laborType;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Labor{" +
+                "name='" + super.getName() + '\'' +
+                "vatRate='" + super.getVatRate() + '\'' +
+                "hourlyRate=" + hourlyRate +
+                ", workHours=" + workHours +
+                ", workerProductivity=" + workerProductivity +
+                ", laborType='" + laborType + '\'' +
+                '}';
     }
 }
 
