@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class LaborRepositoryImpl implements repository.LaborRepository {
+    private final Connection connection = DbConnection.getInstance().getConnection();
     @Override
    public boolean addLabor(Labor labor){
     String sql = "WITH inserted_component AS (" +
@@ -20,10 +21,10 @@ public class LaborRepositoryImpl implements repository.LaborRepository {
             "VALUES (?, ?::component_type_enum, ?, ?) " +
             "RETURNING component_id" +
             ") " +
-            "INSERT INTO labor (component_id, hourly_rate, work_hours, labor_type) " +
-            "VALUES ((SELECT component_id FROM inserted_component), ?, ?, ?)";
+            "INSERT INTO labor (component_id, hourly_rate, work_hours, labor_type, worker_productivity) " +
+            "VALUES ((SELECT component_id FROM inserted_component), ?, ?, ? ,?)";
     try {
-        Connection connection = DbConnection.getInstance().getConnection();
+
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, labor.getName());
         ps.setString(2, labor.getComponentType().toString());
@@ -32,6 +33,7 @@ public class LaborRepositoryImpl implements repository.LaborRepository {
         ps.setDouble(5, labor.getHourlyRate());
         ps.setDouble(6, labor.getWorkHours());
         ps.setString(7, labor.getLaborType());
+        ps.setDouble(8, labor.getWorkerProductivity());
         ps.executeUpdate();
         return true;
 
@@ -49,7 +51,6 @@ public class LaborRepositoryImpl implements repository.LaborRepository {
                 "JOIN components c ON l.component_id = c.component_id" +
                 " WHERE c.project_id = ? AND c.component_type = 'LABOR'";
         try {
-            Connection connection = DbConnection.getInstance().getConnection();
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, projectId);
             ResultSet rs = ps.executeQuery();
