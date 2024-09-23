@@ -15,5 +15,4 @@ public class ComponentRepositoryImpl implements ComponentRepository {
     public  Component mapResultSetToComponent(ResultSet rs) throws Exception{
         return null;
     }
-
 }

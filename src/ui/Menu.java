@@ -43,7 +43,7 @@ public class Menu {
                     projectController.showExistingProjects();
                     break;
                 case 3:
-                    projectController.calculateProjectCost();
+                    projectController.calculateProjectCost(1);
                     break;
                 case 4:
                     System.out.println("Au revoir !");
