@@ -14,7 +14,11 @@ public class LaborController {
         return laborService.addLabor(labor);
     }
 
-    public Optional<List<Labor>> getMaterialOfProject(int projectId) {
-        return laborService.getLaborOfProject(projectId);
+    public List<Labor> getMaterialOfProject(int projectId) {
+
+        if(laborService.getLaborOfProject(projectId).isPresent()){
+            return laborService.getLaborOfProject(projectId).get();
+        }
+        return null;
     }
 }

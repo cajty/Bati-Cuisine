@@ -12,8 +12,12 @@ public class MaterialController {
         return materialService.addMaterial(material);
     }
 
-    public Optional<List<Material>> getMaterialOfProject(int projectId) {
-        return materialService.getMaterialOfProject(projectId);
+    public List<Material> getMaterialOfProject(int projectId) {
+
+        if(materialService.getMaterialOfProject(projectId).isPresent()){
+            return materialService.getMaterialOfProject(projectId).get();
+        }
+        return null;
     }
 
 }

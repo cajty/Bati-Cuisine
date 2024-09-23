@@ -7,6 +7,7 @@ import service.ProjectService;
 public class ProjectController {
     private static final ProjectService projectSrv = new ProjectService();
 
+
     public  void showExistingProjects() {
         projectSrv.showExistingProjects();
     }
@@ -16,8 +17,10 @@ public class ProjectController {
 
     }
 
-    public void calculateProjectCost() {
-        System.out.println("calculateProjectCost");
+    public void calculateProjectCost(int projectId) {
+
+
+
     }
 
 }

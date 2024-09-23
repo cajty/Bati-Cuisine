@@ -40,26 +40,26 @@ public   class  Helper {
 
 
         while (startDate == null || endDate == null) {
-            System.out.println("Enter date start (format: yyyy-MM-dd):");
+            System.out.println("Entrez la date d'émission du devis (format : jj-mm-aaaa) :");
             input.nextLine();
             dateStart = input.nextLine();
             startDate = convertToDate(dateStart);
 
             if ( startDate == null) {
-                System.out.println("Invalid date format for start date. Please try again.");
+                System.out.println("Invalid  date d'émission du devis");
                 continue;
             }
 
-            System.out.println("Enter date end (format: yyyy-MM-dd):");
+            System.out.println("Entrez la date de validité du devis (format : jj-mm-aaaa) :");
             dateEnd = input.nextLine();
             endDate = convertToDate(dateEnd);
             if (endDate == null) {
-                System.out.println("Invalid date format for end date. Please try again.");
+                System.out.println("Invalid la date de validité du devis");
                 continue;
             }
 
             if (startDate.isAfter(endDate)) {
-                System.out.println("Start date must be before end date.");
+                System.out.println("la date d'émission du devis date must  date d'émission du devis");
                 startDate = null;
                 endDate = null;
             }
