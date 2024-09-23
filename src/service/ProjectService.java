@@ -10,13 +10,14 @@ import java.util.Optional;
 public class ProjectService {
     private static final ProjectRepository projectRepository = new ProjectRepositoryImpl();
 
-public void addProject(Project project) {
+public Project addProject(Project project) {
     Optional<Project> newProject = projectRepository.addProject(project);
     if (newProject.isPresent()) {
-        System.out.println("Project added successfully" + newProject.get());
+
+        return newProject.get();
 
     } else {
-        System.out.println("Failed to add project");
+        return null;
 
     }
 

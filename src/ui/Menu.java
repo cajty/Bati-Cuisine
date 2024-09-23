@@ -1,8 +1,11 @@
 package ui;
 
+import controller.LaborController;
+import controller.MaterialController;
 import controller.ProjectController;
 import controller.ClientController;
 import model.Client;
+import model.Project;
 import util.ScannerSingleton;
 
 import java.util.Optional;
@@ -13,8 +16,13 @@ public class Menu {
     private static final Scanner input = ScannerSingleton.getScanner();
     private static final ProjectController projectController = new ProjectController();
     private static final ClientController clientController = new ClientController();
+    private static final MaterialController materialController = new MaterialController();
+    private static final LaborController laborController = new LaborController();
+    private LaborMenu laborMenu = new LaborMenu(input,laborController);
+    private MaterialMenu materialMenu = new MaterialMenu(input,materialController);
 
-    public static void mainMenu() {
+
+    public  void start() {
         int userInput;
 
         do {
@@ -47,7 +55,7 @@ public class Menu {
         } while (userInput != 4);
     }
 
-    private static void createNewProject() {
+    private  void createNewProject() {
         System.out.println("--- Recherche de client ---");
         Optional<Client> clientOpt = searchOrAddClient();
 
@@ -58,8 +66,11 @@ public class Menu {
             System.out.print("Entrez le nom du projet : ");
             String projectName = input.nextLine();
 
-             projectController.addProject(projectName, client.getClientId());
-//            projectController.addComponent();
+           Project project = projectController.addProject(projectName, client.getClientId());
+            materialMenu.addMaterial(project.getProjectId());
+            laborMenu.addLabor(project.getProjectId());
+
+
         } else {
             System.out.println("Aucun client sélectionné. Retour au menu principal.");
         }
@@ -130,4 +141,11 @@ public class Menu {
         }
 
 
+
 }
+
+
+
+
+
+

@@ -10,11 +10,10 @@ public class ProjectController {
     public  void showExistingProjects() {
         projectSrv.showExistingProjects();
     }
-    public void addProject(String projectName, int clientId) {
+    public Project addProject(String projectName, int clientId) {
         Project  project = new Project(projectName, clientId);
-        projectSrv.addProject(project);
+        return projectSrv.addProject(project);
 
-        System.out.println("addProject");
     }
 
     public void calculateProjectCost() {
