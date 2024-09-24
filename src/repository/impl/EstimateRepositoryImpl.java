@@ -12,15 +12,14 @@ public class EstimateRepositoryImpl implements EstimateRepository {
 
     @Override
     public Optional<Estimate> addEstimate(Estimate estimate) {
-        String sql = "INSERT INTO estimates (estimated_amount, issue_date, validity_date, is_accepted, project_id) " +
-                "VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO estimates (estimated_amount, issue_date, validity_date ,is_accepted, project_id) " +
+                "VALUES (?, ?, ?, false, ?)";
         try {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setDouble(1, estimate.getEstimatedAmount());
-            ps.setDate(2, new java.sql.Date(estimate.getIssueDate().getTime()));
-            ps.setDate(3, new java.sql.Date(estimate.getValidityDate().getTime()));
-            ps.setBoolean(4, estimate.isAccepted());
-            ps.setInt(5, estimate.getProjectId());
+           ps.setDate(2, java.sql.Date.valueOf(estimate.getIssueDate()));
+ps.setDate(3, java.sql.Date.valueOf(estimate.getValidityDate()));
+            ps.setInt(4, estimate.getProjectId());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -57,12 +56,10 @@ public class EstimateRepositoryImpl implements EstimateRepository {
     @Override
     public Estimate mapResultSetToEstimate(ResultSet rs) throws Exception{
 
-        return new Estimate(rs.getInt("estimate_id"),
+        return new Estimate(
                  rs.getDouble("estimated_amount"),
-                 rs.getDate("issue_date"),
-                 rs.getDate("validity_date"),
-                 rs.getBoolean("is_accepted"),
+                 rs.getDate("issue_date").toLocalDate(),
+                 rs.getDate("validity_date").toLocalDate(),
                  rs.getInt("project_id"));
-
     }
 }

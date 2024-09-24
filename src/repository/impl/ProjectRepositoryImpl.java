@@ -52,6 +52,23 @@ public class ProjectRepositoryImpl implements repository.ProjectRepository {
         return Optional.empty();
     }
 
+
+    public boolean addCostAndmarginProfitToProject(int projectId, double cost, double marginProfit) {
+        String sql = "UPDATE projects SET total_cost = ?, profit_margin = ? WHERE project_id = ?";
+        try {
+            Connection connection = DbConnection.getInstance().getConnection();
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setDouble(1, cost);
+            ps.setDouble(2, marginProfit);
+            ps.setInt(3, projectId);
+            int affectedRows = ps.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public Project mapResultSetToProject(ResultSet rs) throws Exception {
         return new Project(
                 rs.getInt("project_id"),

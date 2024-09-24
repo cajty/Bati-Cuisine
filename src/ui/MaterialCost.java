@@ -8,7 +8,9 @@ public class MaterialCost {
     private  double materialPCost = 0;
     private  double materialPCostWithVat = 0;
 
-    public void showMaterialCost(List<Material> materialsOfProject, double vatRate) {// Use a different variable name to avoid confusion
+    public void showMaterialCost(List<Material> materialsOfProject, double vatRate) {
+
+        System.out.println("==================Coût des matériaux :===================");
 
         for (Material material : materialsOfProject) {
             double materialCost = material.getUnitCost() * material.getQuantity() * material.getQualityCoefficient() + material.getTransportCost();
@@ -23,18 +25,21 @@ public class MaterialCost {
                     material.getTransportCost()
             );
         }
+        System.out.println("\n\n\n==============================================\n");
 
         materialPCostWithVat = materialPCost * (1 + vatRate / 100);
 
         System.out.printf("%nCoût total : %.2f €%n", materialPCost);
         System.out.printf("Coût total avec TVA (%.2f%%) : %.2f €%n", vatRate, materialPCostWithVat);
+        System.out.println("\n==============================================\n");
+
     }
 
-    public  double getLaborCost() {
+    public  double getMaterialCost() {
         return materialPCost;
     }
 
-    public  double getLaborCostWithVat() {
+    public  double getMaterialWithVat() {
         return materialPCostWithVat;
     }
 

@@ -28,4 +28,12 @@ public class ClientController {
         return client;
     }
 
+    public Client getClientOfProject( int id) {
+          Optional<Client> client= clientSev.getClientOfProject(id);
+        if (client.isPresent()) {
+            return client.get();
+        }
+        return null;
+    }
+
 }

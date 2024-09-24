@@ -10,7 +10,7 @@ public class LaborCost {
     private static double laborPCostWithVat = 0;
 
     public  void showlaborCost(List<Labor> laborOfProject, double vatRate) {
-
+        System.out.println("==================Coût de la main d'oeuvre :===================");
         laborOfProject.forEach(labor -> {
             double laborCost = labor.getHourlyRate() * labor.getWorkHours() * labor.getWorkerProductivity() ;
             laborPCost += laborCost;
@@ -28,6 +28,9 @@ public class LaborCost {
 
         System.out.printf("%nCoût total : %.2f €%n", laborPCost);
         System.out.printf("Coût total avec TVA (%.2f%%) : %.2f €%n", vatRate, laborPCostWithVat);
+
+        System.out.println("\n\n\n==============================================\n");
+
     }
 
     public double getLaborCost() {

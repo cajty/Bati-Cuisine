@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface ProjectRepository {
     Optional<Project> addProject(Project project );
     Optional<List<Project>> getAllProjects();
+    boolean addCostAndmarginProfitToProject(int projectId, double cost, double marginProfit);
 
     Project mapResultSetToProject(ResultSet rs) throws Exception;
 

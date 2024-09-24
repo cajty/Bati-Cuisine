@@ -40,8 +40,7 @@ public   class  Helper {
 
 
         while (startDate == null || endDate == null) {
-            System.out.println("Entrez la date d'émission du devis (format : jj-mm-aaaa) :");
-            input.nextLine();
+            System.out.println("Entrez la date d'émission du devis (format : aaaa-mm-jj) :");
             dateStart = input.nextLine();
             startDate = convertToDate(dateStart);
 
@@ -50,7 +49,7 @@ public   class  Helper {
                 continue;
             }
 
-            System.out.println("Entrez la date de validité du devis (format : jj-mm-aaaa) :");
+            System.out.println("Entrez la date de validité du devis (format : aaaa-mm-jj) :");
             dateEnd = input.nextLine();
             endDate = convertToDate(dateEnd);
             if (endDate == null) {
@@ -69,14 +68,14 @@ public   class  Helper {
     }
 
 
-    public static int getIdReservationFromUser() {
+    public static int geProjectIdFromUser() {
 
         int id = -1;
         boolean validInput = false;
 
         while (!validInput) {
             try {
-                System.out.println("Enter id of reservation:");
+                System.out.println("Enter id of Project:");
                 id = input.nextInt();
                 validInput = true;
             } catch (InputMismatchException e) {
