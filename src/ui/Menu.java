@@ -3,7 +3,6 @@ package ui;
 import controller.*;
 import model.Client;
 import model.Estimate;
-import model.Labor;
 import model.Project;
 import util.Helper;
 import util.ScannerSingleton;
@@ -21,8 +20,8 @@ public class Menu {
     private static final LaborController laborController = new LaborController();
     private static final EstimateController estimateController = new EstimateController();
 
-    private LaborMenu laborMenu = new LaborMenu(input,laborController);
-    private MaterialMenu materialMenu = new MaterialMenu(input,materialController);
+    private AddLabor addLabor = new AddLabor(input,laborController);
+    private AddMaterial addMaterial = new AddMaterial(input,materialController);
 
     private LaborCost laborCost = new LaborCost();
     private MaterialCost materialCost = new MaterialCost();
@@ -39,7 +38,7 @@ public class Menu {
                     "\n4. Quitter" +
                     "\nChoisissez une option :");
 
-            userInput = getValidInput();
+            userInput = getValidNumberInput();
 
             switch (userInput) {
                 case 1:
@@ -68,14 +67,21 @@ public class Menu {
 
         if (clientOpt.isPresent()) {
             Client client = clientOpt.get();
+            System.out.println("Client trouvé :\n " + client.getName());
+            System.out.println("Souhaitez-vous continuer avec ce client ? (y/n) :" );
+            String continueWithClient = input.nextLine();
+            if (!continueWithClient.equalsIgnoreCase("y")) {
+                System.out.println("Retour au menu principal.");
+                return;
+            }
 
             System.out.println("--- Création d'un Nouveau Projet ---");
             System.out.print("Entrez le nom du projet : ");
             String projectName = input.nextLine();
 
            Project project = projectController.addProject(projectName, client.getClientId());
-            materialMenu.addMaterial(project.getProjectId());
-            laborMenu.addLabor(project.getProjectId());
+            addMaterial.addMaterial(project.getProjectId());
+            addLabor.addLabor(project.getProjectId());
 
             calculterCostProject(project.getProjectId());
 
@@ -86,12 +92,20 @@ public class Menu {
 
 
 
-        private static int getValidInput() {
+        private static int getValidNumberInput() {
         while (!input.hasNextInt()) {
             input.nextLine();
             System.out.println("Entrée invalide. Veuillez entrer un nombre.");
         }
         return input.nextInt();
+    }
+        private static double getValidDoubleInput() {
+        while (!input.hasNextDouble()) {
+            input.nextLine();
+            System.out.println("Entrée invalide. Veuillez entrer un nombre.");
+
+        }
+        return input.nextDouble();
     }
 
 
@@ -101,11 +115,9 @@ public class Menu {
          System.out.println("2. Ajouter un nouveau client");
          System.out.println("3. Retour au menu principal");
          System.out.print("Choisissez une option : ");
-         int choice = getValidInput();
+         int choice = getValidNumberInput();
          switch (choice) {
              case 1:
-                 System.out.print("Entrez le nom du client : ");
-                 String clientName = input.nextLine();
                  return searchClient();
              case 2:
                  return addClient();

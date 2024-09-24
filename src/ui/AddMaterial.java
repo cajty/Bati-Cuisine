@@ -6,20 +6,22 @@ import model.Material;
 
 import java.util.Scanner;
 
-public class MaterialMenu {
+public class AddMaterial {
 
 
     private final MaterialController materialController;
     private   static   Scanner input ;
 
 
-    public MaterialMenu(Scanner input, MaterialController materialController) {
+    public AddMaterial(Scanner input, MaterialController materialController) {
         this.materialController = materialController;
         this.input = input;
 
     }
 
     public   void addMaterial(int projectId) {
+
+        System.out.println("\n========= Ajout de matériau : =========\n\n");
         while (true) {
             System.out.print("Entrez le nom du matériau : ");
             String name = input.nextLine();

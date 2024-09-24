@@ -18,7 +18,7 @@ CREATE TABLE clients (
 
 CREATE TABLE projects (
                           project_id SERIAL PRIMARY KEY,
-                          project_name VARCHAR(255) NOT NULL UNIQUE,
+                          project_name VARCHAR(255) NOT NULL,
                           profit_margin NUMERIC(5, 2) NOT NULL DEFAULT 0.0 CHECK (profit_margin >= 0),
                           total_cost NUMERIC(12, 2) NOT NULL DEFAULT 0.0 CHECK (total_cost >= 0),
                           project_status project_status_enum NOT NULL DEFAULT 'IN_PROGRESS',
