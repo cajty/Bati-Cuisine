@@ -2,23 +2,22 @@ package model;
 
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class Estimate {
 
 
     private int estimateId;
     private double estimatedAmount;
-    private Date issueDate;
-    private Date validityDate;
+    private LocalDate issueDate;
+    private LocalDate validityDate;
     private boolean isAccepted;
     private int projectId;
 
-    public Estimate(int estimateId, double estimatedAmount, Date issueDate, Date validityDate, boolean isAccepted, int projectId) {
-        this.estimateId = estimateId;
+    public Estimate( double estimatedAmount, LocalDate issueDate, LocalDate validityDate,  int projectId) {
         this.estimatedAmount = estimatedAmount;
         this.issueDate = issueDate;
         this.validityDate = validityDate;
-        this.isAccepted = isAccepted;
         this.projectId = projectId;
 
     }
@@ -40,19 +39,19 @@ public class Estimate {
         this.estimatedAmount = estimatedAmount;
     }
 
-    public Date getIssueDate() {
+    public LocalDate getIssueDate() {
         return issueDate;
     }
 
-    public void setIssueDate(Date issueDate) {
+    public void setIssueDate(LocalDate issueDate) {
         this.issueDate = issueDate;
     }
 
-    public Date getValidityDate() {
+    public LocalDate getValidityDate() {
         return validityDate;
     }
 
-    public void setValidityDate(Date validityDate) {
+    public void setValidityDate(LocalDate validityDate) {
         this.validityDate = validityDate;
     }
 

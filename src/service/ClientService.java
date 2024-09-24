@@ -13,6 +13,8 @@ public class ClientService {
     }
     public Optional<Client>  searchClient(String name) {
         return clientRepository.getClientByName(name);
-
+    }
+    public Optional<Client> getClientOfProject(int projectId) {
+        return clientRepository.getClientOfProject(projectId);
     }
 }

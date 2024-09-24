@@ -30,4 +30,8 @@ public Project addProject(Project project) {
         });
     }
 
+    public void addCostAndmarginProfitToProject(int projectId, double cost, double marginProfit) {
+        projectRepository.addCostAndmarginProfitToProject(projectId, cost, marginProfit);
+    }
+
 }

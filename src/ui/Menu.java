@@ -1,13 +1,14 @@
 package ui;
 
-import controller.LaborController;
-import controller.MaterialController;
-import controller.ProjectController;
-import controller.ClientController;
+import controller.*;
 import model.Client;
+import model.Estimate;
+import model.Labor;
 import model.Project;
+import util.Helper;
 import util.ScannerSingleton;
 
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -18,8 +19,13 @@ public class Menu {
     private static final ClientController clientController = new ClientController();
     private static final MaterialController materialController = new MaterialController();
     private static final LaborController laborController = new LaborController();
+    private static final EstimateController estimateController = new EstimateController();
+
     private LaborMenu laborMenu = new LaborMenu(input,laborController);
     private MaterialMenu materialMenu = new MaterialMenu(input,materialController);
+
+    private LaborCost laborCost = new LaborCost();
+    private MaterialCost materialCost = new MaterialCost();
 
 
     public  void start() {
@@ -43,7 +49,8 @@ public class Menu {
                     projectController.showExistingProjects();
                     break;
                 case 3:
-                    projectController.calculateProjectCost(1);
+                        int projectId = Helper.geProjectIdFromUser();
+                        calculterCostProject(projectId);
                     break;
                 case 4:
                     System.out.println("Au revoir !");
@@ -70,20 +77,25 @@ public class Menu {
             materialMenu.addMaterial(project.getProjectId());
             laborMenu.addLabor(project.getProjectId());
 
+            calculterCostProject(project.getProjectId());
 
         } else {
             System.out.println("Aucun client sélectionné. Retour au menu principal.");
         }
     }
 
-    private static int getValidInput() {
+
+
+        private static int getValidInput() {
         while (!input.hasNextInt()) {
             input.nextLine();
             System.out.println("Entrée invalide. Veuillez entrer un nombre.");
         }
         return input.nextInt();
     }
-    private static Optional<Client> searchOrAddClient() {
+
+
+        private static Optional<Client> searchOrAddClient() {
      do {
          System.out.println("1. Rechercher un client existant");
          System.out.println("2. Ajouter un nouveau client");
@@ -105,7 +117,9 @@ public class Menu {
      } while (true);
     }
 
-    private static Optional<Client> addClient() {
+
+
+        private static Optional<Client> addClient() {
         input.nextLine();
     System.out.print("Entrez le nom du client : ");
     String name = input.nextLine();
@@ -133,12 +147,101 @@ public class Menu {
     );
 }
 
+
         private static Optional<Client> searchClient() {
             input.nextLine();
             System.out.print("Entrez le nom du client : ");
             String name = input.nextLine();
             return clientController.searchClient(name);
         }
+
+
+        public void calculterCostProject(int projectId) {
+
+        double tva = askForVAT();
+        double profitMargin = askForProfitMargin();
+
+           Client client  = clientController.getClientOfProject(projectId);
+
+
+
+            laborCost.showlaborCost(laborController.getMaterialOfProject(projectId), tva);
+
+            materialCost.showMaterialCost(materialController.getMaterialOfProject(projectId), tva);
+
+            double amount = laborCost.getLaborCostWithVat() + materialCost.getMaterialWithVat() * (1 + profitMargin / 100);
+
+            if(client.isProfessional()) {
+                amount = amount * 0.9;     // 10% discount for professional clients
+            }
+            System.out.println("Le coût total du projet est de : " + amount + " €");
+
+            addEstimate(projectId ,amount, profitMargin);
+
+
+
+        }
+
+
+        private boolean addEstimate(int projectId , double amount , double profitMargin) {
+
+
+
+        LocalDate[] dates = Helper.inputAndValidateDates();
+        System.out.println("ouhaitez-vous enregistrer le devis ? (y/n):");
+        String saveEstimate = input.nextLine();
+        if (saveEstimate.equalsIgnoreCase("y")) {
+            Estimate estimate  = new Estimate(amount, dates[0], dates[1], projectId);
+            estimateController.addEstimate(estimate);
+            projectController.addCostAndmarginProfitToProject(projectId, amount, profitMargin );
+
+            return true;
+        }
+        return false;
+
+    }
+
+
+
+
+
+
+
+    private double askForVAT() {
+        input.nextLine();
+    System.out.print("Souhaitez-vous appliquer une TVA au projet ? (y/n) : ");
+    String applyVAT = input.nextLine();
+    if (applyVAT.equalsIgnoreCase("y")) {
+        System.out.print("Entrez le pourcentage de TVA (%) : ");
+        while (!input.hasNextDouble()) {
+            input.nextLine();
+            System.out.print("Entrée invalide. Veuillez entrer un nombre : ");
+        }
+        double vatPercentage = input.nextDouble();
+        input.nextLine();
+        return vatPercentage;
+    }
+    return 0;
+}
+
+
+    private double askForProfitMargin() {
+    System.out.print("Souhaitez-vous appliquer une marge bénéficiaire au projet ? (y/n) : ");
+    String applyMargin = input.nextLine();
+    if (applyMargin.equalsIgnoreCase("y")) {
+        System.out.print("Entrez le pourcentage de marge bénéficiaire (%) : ");
+        while (!input.hasNextDouble()) {
+            input.nextLine();
+            System.out.print("Entrée invalide. Veuillez entrer un nombre : ");
+        }
+        double marginPercentage = input.nextDouble();
+        input.nextLine();
+        return marginPercentage;
+    }
+    return 0;
+}
+
+
 
 
 

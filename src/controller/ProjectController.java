@@ -17,10 +17,8 @@ public class ProjectController {
 
     }
 
-    public void calculateProjectCost(int projectId) {
-
-
-
+    public void addCostAndmarginProfitToProject(int projectId, double cost, double marginProfit) {
+        projectSrv.addCostAndmarginProfitToProject(projectId, cost, marginProfit);
     }
 
 }
