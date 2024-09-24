@@ -45,13 +45,5 @@ public class DbConnection {
         return connection;
     }
 
-    public void closeConnection() {
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                System.err.println("Failed to close database connection: " + e.getMessage());
-            }
-        }
-    }
+
 }

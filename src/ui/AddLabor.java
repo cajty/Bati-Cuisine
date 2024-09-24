@@ -6,32 +6,33 @@ import model.Labor;
 
 import java.util.Scanner;
 
-public class LaborMenu {
+public class AddLabor {
 
     private final LaborController laborController;
     private static  Scanner input;
 
-    public LaborMenu(Scanner input, LaborController laborController) {
+    public AddLabor(Scanner input, LaborController laborController) {
         this.laborController = laborController;
         this.input = input;
     }
 
     public void addLabor(int projectId) {
+        System.out.println("\n=================Ajout de la main-d'œuvre================\n\n");
         while (true) {
             System.out.print("Entrez le nom de la main-d'œuvre : ");
             String name = input.nextLine();
             System.out.print("Entrez le taux de TVA : ");
             double vatRate = input.nextDouble();
-            input.nextLine(); // Consume newline left-over
+            input.nextLine();
             System.out.print("Entrez le coût horaire : ");
             double hourlyRate = input.nextDouble();
-            input.nextLine(); // Consume newline left-over
+            input.nextLine();
             System.out.print("Entrez les heures de travail : ");
             double workHours = input.nextDouble();
-            input.nextLine(); // Consume newline left-over
+            input.nextLine();
             System.out.print("Entrez la productivité des travailleurs : ");
             double workerProductivity = input.nextDouble();
-            input.nextLine(); // Consume newline left-over
+            input.nextLine();
             System.out.print("Entrez le type de main-d'œuvre : ");
             String laborType = input.nextLine();
 
