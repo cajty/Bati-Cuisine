@@ -44,7 +44,7 @@ public class MaterialRepositoryImpl implements MaterialRepository {
 
         return false;
     }
-
+    @Override
     public Optional<List<Material>> getMaterialOfProject(int projectId){
         List<Material> materials = new ArrayList<>();
         String sql = "SELECT c.name ,c.vat_rate  , m.quantity , m.quality_coefficient , m.transport_cost , m.unit_cost FROM materials m " +

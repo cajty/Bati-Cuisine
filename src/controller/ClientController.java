@@ -29,11 +29,7 @@ public class ClientController {
     }
 
     public Client getClientOfProject( int id) {
-          Optional<Client> client= clientSev.getClientOfProject(id);
-        if (client.isPresent()) {
-            return client.get();
-        }
-        return null;
+        return clientSev.getClientOfProject(id).orElse(null);
     }
 
 }

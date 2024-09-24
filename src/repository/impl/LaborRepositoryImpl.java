@@ -44,7 +44,7 @@ public class LaborRepositoryImpl implements repository.LaborRepository {
 
    return false;
 }
-
+    @Override
     public Optional<List<Labor>> getLaborOfProject(int projectId){
         List<Labor> labors = new ArrayList<>();
         String sql = "SELECT c.name ,c.vat_rate  , l.labor_type , l.work_hours , l.hourly_rate , l.worker_productivity FROM labor l " +
@@ -64,7 +64,7 @@ public class LaborRepositoryImpl implements repository.LaborRepository {
         }
         return Optional.empty();
     }
-
+    @Override
     public Labor mapResultSetToLabor(ResultSet rs) throws Exception{
 
         return new Labor(

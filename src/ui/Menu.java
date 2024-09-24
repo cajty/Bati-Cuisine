@@ -96,7 +96,7 @@ public class Menu {
 
 
 
-        private static Optional<Client> searchOrAddClient() {
+    private static Optional<Client> searchOrAddClient() {
      do {
          System.out.println("1. Rechercher un client existant");
          System.out.println("2. Ajouter un nouveau client");
@@ -118,21 +118,21 @@ public class Menu {
 
 
 
-        private static Optional<Client> addClient() {
+    private static Optional<Client> addClient() {
         input.nextLine();
-    System.out.print("Entrez le nom du client : ");
-    String name = input.nextLine();
+        System.out.print("Entrez le nom du client : ");
+        String name = input.nextLine();
 
-    System.out.print("Entrez l'adresse du client : ");
-    String address = input.nextLine();
+        System.out.print("Entrez l'adresse du client : ");
+        String address = input.nextLine();
 
-    System.out.print("Entrez le numéro de téléphone du client : ");
-    String phone = input.nextLine();
+        System.out.print("Entrez le numéro de téléphone du client : ");
+        String phone = input.nextLine();
 
-    boolean isProfessional = false;
-    while (true) {
-        System.out.print("Le client est-il un professionnel ? (true/false) : ");
-        String isProfessionalInput = input.nextLine();
+        boolean isProfessional = false;
+        while (true) {
+            System.out.print("Le client est-il un professionnel ? (true/false) : ");
+            String isProfessionalInput = input.nextLine();
         if (isProfessionalInput.equalsIgnoreCase("true") || isProfessionalInput.equalsIgnoreCase("false")) {
             isProfessional = Boolean.parseBoolean(isProfessionalInput);
             break;
@@ -157,8 +157,8 @@ public class Menu {
 
         public void calculterCostProject(int projectId) {
 
-        double tva = askForVAT();
-        double profitMargin = askForProfitMargin();
+            double tva = askForVAT();
+            double profitMargin = askForProfitMargin();
 
            Client client  = clientController.getClientOfProject(projectId);
 
@@ -191,7 +191,7 @@ public class Menu {
         String saveEstimate = input.nextLine();
         if (saveEstimate.equalsIgnoreCase("y")) {
             Estimate estimate  = new Estimate(amount, dates[0], dates[1], projectId);
-            estimateController.addEstimate(estimate);
+            estimateController.addEstimate(estimate).toString();
             projectController.addCostAndmarginProfitToProject(projectId, amount, profitMargin );
 
             return true;

@@ -68,5 +68,17 @@ public class Client  {
     public void setProfessional(boolean professional) {
         isProfessional = professional;
     }
+
+    @Override
+    public String toString() {
+        return "Client info : " +
+                "\n===============================================\n"  +
+                "clientId=" + clientId +
+                ", name='" + name + '\n' +
+                ", address='" + address + '\n' +
+                ", phone='" + phone + '\n' +
+                ",  isProfessional=" + (isProfessional ? "Professional" : "Not Professional") +
+                "\n===============================================\n\n"  ;
+    }
 }
 

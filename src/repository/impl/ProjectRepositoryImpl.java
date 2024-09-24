@@ -52,7 +52,7 @@ public class ProjectRepositoryImpl implements repository.ProjectRepository {
         return Optional.empty();
     }
 
-
+    @Override
     public boolean addCostAndmarginProfitToProject(int projectId, double cost, double marginProfit) {
         String sql = "UPDATE projects SET total_cost = ?, profit_margin = ? WHERE project_id = ?";
         try {
@@ -68,7 +68,7 @@ public class ProjectRepositoryImpl implements repository.ProjectRepository {
         }
         return false;
     }
-
+    @Override
     public Project mapResultSetToProject(ResultSet rs) throws Exception {
         return new Project(
                 rs.getInt("project_id"),
