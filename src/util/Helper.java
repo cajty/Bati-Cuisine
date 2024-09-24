@@ -11,7 +11,22 @@ public   class  Helper {
 
     private static final Scanner input = ScannerSingleton.getScanner();
 
+    public static int getValidNumberInput() {
+        while (!input.hasNextInt()) {
+            input.nextLine();
+            System.out.println("Entrée invalide. Veuillez entrer un nombre.");
+        }
+        return input.nextInt();
+    }
 
+    public static double getValidDoubleInput() {
+        while (!input.hasNextDouble()) {
+            input.nextLine();
+            System.out.println("Entrée invalide. Veuillez entrer un nombre.");
+
+        }
+        return input.nextDouble();
+    }
 
 
 

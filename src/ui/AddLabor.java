@@ -3,6 +3,7 @@ package ui;
 import controller.LaborController;
 import model.ComponentType;
 import model.Labor;
+import util.Helper;
 
 import java.util.Scanner;
 
@@ -22,16 +23,16 @@ public class AddLabor {
             System.out.print("Entrez le nom de la main-d'œuvre : ");
             String name = input.nextLine();
             System.out.print("Entrez le taux de TVA : ");
-            double vatRate = input.nextDouble();
+            double vatRate = Helper.getValidDoubleInput();
             input.nextLine();
             System.out.print("Entrez le coût horaire : ");
-            double hourlyRate = input.nextDouble();
+            double hourlyRate = Helper.getValidDoubleInput();
             input.nextLine();
             System.out.print("Entrez les heures de travail : ");
-            double workHours = input.nextDouble();
+            double workHours = Helper.getValidDoubleInput();
             input.nextLine();
             System.out.print("Entrez la productivité des travailleurs : ");
-            double workerProductivity = input.nextDouble();
+            double workerProductivity = Helper.getValidDoubleInput();
             input.nextLine();
             System.out.print("Entrez le type de main-d'œuvre : ");
             String laborType = input.nextLine();

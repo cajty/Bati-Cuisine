@@ -38,7 +38,7 @@ public class Menu {
                     "\n4. Quitter" +
                     "\nChoisissez une option :");
 
-            userInput = getValidNumberInput();
+            userInput = Helper.getValidNumberInput();
 
             switch (userInput) {
                 case 1:
@@ -92,21 +92,8 @@ public class Menu {
 
 
 
-        private static int getValidNumberInput() {
-        while (!input.hasNextInt()) {
-            input.nextLine();
-            System.out.println("Entrée invalide. Veuillez entrer un nombre.");
-        }
-        return input.nextInt();
-    }
-        private static double getValidDoubleInput() {
-        while (!input.hasNextDouble()) {
-            input.nextLine();
-            System.out.println("Entrée invalide. Veuillez entrer un nombre.");
+      
 
-        }
-        return input.nextDouble();
-    }
 
 
         private static Optional<Client> searchOrAddClient() {
@@ -115,7 +102,7 @@ public class Menu {
          System.out.println("2. Ajouter un nouveau client");
          System.out.println("3. Retour au menu principal");
          System.out.print("Choisissez une option : ");
-         int choice = getValidNumberInput();
+         int choice = Helper.getValidNumberInput();
          switch (choice) {
              case 1:
                  return searchClient();
@@ -229,7 +216,7 @@ public class Menu {
             input.nextLine();
             System.out.print("Entrée invalide. Veuillez entrer un nombre : ");
         }
-        double vatPercentage = input.nextDouble();
+        double vatPercentage = Helper.getValidDoubleInput();
         input.nextLine();
         return vatPercentage;
     }
@@ -246,7 +233,7 @@ public class Menu {
             input.nextLine();
             System.out.print("Entrée invalide. Veuillez entrer un nombre : ");
         }
-        double marginPercentage = input.nextDouble();
+        double marginPercentage = Helper.getValidDoubleInput();
         input.nextLine();
         return marginPercentage;
     }

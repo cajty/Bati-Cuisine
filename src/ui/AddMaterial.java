@@ -3,6 +3,7 @@ package ui;
 import controller.MaterialController;
 import model.ComponentType;
 import model.Material;
+import util.Helper;
 
 import java.util.Scanner;
 
@@ -26,19 +27,19 @@ public class AddMaterial {
             System.out.print("Entrez le nom du matériau : ");
             String name = input.nextLine();
             System.out.print("Entrez le taux de TVA : ");
-            double vatRate = input.nextDouble();
+            double vatRate = Helper.getValidDoubleInput();
             input.nextLine(); // Consume newline left-over
             System.out.print("Entrez le coût unitaire : ");
-            double unitCost = input.nextDouble();
+            double unitCost = Helper.getValidDoubleInput();
             input.nextLine(); // Consume newline left-over
             System.out.print("Entrez la quantité : ");
-            double quantity = input.nextDouble();
+            double quantity = Helper.getValidDoubleInput();
             input.nextLine(); // Consume newline left-over
             System.out.print("Entrez le coût de transport : ");
-            double transportCost = input.nextDouble();
+            double transportCost = Helper.getValidDoubleInput();
             input.nextLine(); // Consume newline left-over
             System.out.print("Entrez le coefficient de qualité : ");
-            double qualityCoefficient = input.nextDouble();
+            double qualityCoefficient = Helper.getValidDoubleInput();
             input.nextLine(); // Consume newline left-over
 
             Material material = new Material(name, ComponentType.MATERIAL, vatRate, projectId, unitCost, quantity, transportCost, qualityCoefficient);
